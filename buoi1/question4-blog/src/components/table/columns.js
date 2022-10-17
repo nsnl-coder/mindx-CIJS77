@@ -2,6 +2,14 @@ import { format } from 'date-fns'
 
 export const COLUMNS = [
   {
+    Header: '#',
+    id: 'row_number',
+    width: 0.5,
+    disableFilters: true,
+    accessor: (_row, i) => i + 1,
+    // Cell: (row) => +row.row.id + 1,
+  },
+  {
     Header: 'Email',
     Footer: 'Email',
     accessor: 'email',
