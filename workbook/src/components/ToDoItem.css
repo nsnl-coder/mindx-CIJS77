@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: gray;
+}
+
+.checkbox-label {
+  border: 1px solid gray;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox:checked + .checkbox-label {
+  background-color: green;
+}
+
+.todo-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
