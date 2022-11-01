@@ -84,7 +84,7 @@ const Statistic = () => {
           </FormControl>
         </div>
         <LineChartStatistic chartData={chartData} type={filter.type} />
-        <div className='flex justify-between items-center text-base pt-8 px-9 font-semibold'>
+        <div className='flex justify-between items-center text-base pt-4 px-9 font-semibold'>
           <h2>
             Top {filter.type === 'deposite' ? 'Income' : 'Spending'}{' '}
             {filter.year}
@@ -99,7 +99,7 @@ const Statistic = () => {
         <ScrollContainer className='px-8'>
           <ExpenseList expenses={topExpenses} expenseBackground={true} />
           {topExpenses.length === 0 && (
-            <h2>No transaction found in {filter.year}</h2>
+            <h2>No transactions found in {filter.year}</h2>
           )}
         </ScrollContainer>
       </div>

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='h-16 w-full bg-white relative border-t border-gray-100 flex items-center mt-8'>
+    <div className='h-16 w-full bg-white relative border-t border-gray-100 flex items-center'>
       <NavLink to='/add-new'>
         <div className='w-10 h-10 absolute top-0 left-1/2 bg-primary rounded-full items-center justify-center flex text-white -translate-x-1/2 -translate-y-1/2 shadow-lg shadow-primary/40 cursor-pointer'>
           <AddIcon />

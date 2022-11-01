@@ -14,8 +14,8 @@ const LineChartStatistic = (props: any) => {
   const { chartData, type } = props
 
   return (
-    <div className='w-full overflow-hidden text-[9px] flex justify-center'>
-      <ResponsiveContainer width='100%' height={210}>
+    <div className='w-full overflow-hidden text-[9px] flex justify-center h-0 flex-grow-[1.4]'>
+      <ResponsiveContainer width='100%' height='100%'>
         <AreaChart
           width={400}
           height={200}

@@ -17,10 +17,10 @@ const Home = () => {
 
   return (
     <MobileContainer>
-      <div className='flex flex-col h-full pb-10'>
+      <div className='flex flex-col h-full'>
         <AccountSummary />
         <div className='mt-16  font-semibold text-base flex flex-col h-full'>
-          <div className='flex justify-between items-center pt-4 pb-6 px-4'>
+          <div className='flex justify-between items-center pt-4 pb-1 px-4'>
             <h2>Transaction History</h2>
             <Link to='all-transaction'>
               <p className='text-xs text-gray-500 cursor-pointer'>See all</p>
