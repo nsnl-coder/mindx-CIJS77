@@ -1,33 +1,46 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ExpenseList from '../../components/expenses/ExpenseList'
 import getSortedExpenses from '../../helper/getSortedExpenses'
 import { useSelector } from 'react-redux'
+
 import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
 import MobileContainer from '../../components/ui/mobileContainer/MobileContainer'
 import groupExpensesByDay from '../../helper/groupExpensesByDay'
-import Expense from '../../types/expense'
+import groupExpensesByWeek from '../../helper/groupExpensesByWeek'
+import groupExpensesByMonth from '../../helper/groupExpensesByMonth'
+import groupExpensesByYear from '../../helper/groupExpensesByYear'
 
 type Filter = 'day' | 'week' | 'month' | 'year'
 
 const AllTransactions = () => {
-  const [filer, setFiler] = useState<Filter>('day')
-  // number of expenses
-  const [num, setNum] = useState<number>(40)
+  const [filter, setFilter] = useState<Filter>('day')
+  const [renderList, setRenderList] = useState<any>({})
 
   const expenses = useSelector((store: any) => store.expense)
   const sortedExpenses = getSortedExpenses(expenses)
-  const loadedExpenses = sortedExpenses.slice(0, 200)
 
-  const expensesByDay: any = useMemo(
-    () => groupExpensesByDay(loadedExpenses),
-    [loadedExpenses]
-  )
+  useEffect(() => {
+    switch (filter) {
+      case 'day':
+        setRenderList(groupExpensesByDay(sortedExpenses))
+        break
+      case 'week':
+        setRenderList(groupExpensesByWeek(sortedExpenses))
+        break
+      case 'month':
+        setRenderList(groupExpensesByMonth(sortedExpenses))
+        break
+      case 'year':
+        setRenderList(groupExpensesByYear(sortedExpenses))
+        break
+    }
+  }, [filter])
 
-  const renderExpenseByDay = () => {
+  const renderExpenses = () => {
     const arr = []
-    for (let prop in expensesByDay) {
+    for (let prop in renderList) {
       arr.push(
-        <ExpenseList expenses={expensesByDay[prop]} key={prop} title={prop} />
+        <ExpenseList expenses={renderList[prop]} key={prop} title={prop} />
       )
     }
     return arr
@@ -37,16 +50,28 @@ const AllTransactions = () => {
     <MobileContainer isHeaderContainerBg={false} heading='All transactions'>
       <div className='px-6 flex flex-col h-full'>
         <ul className='flex w-full justify-between pt-4 flex-wrap gap-y-3 gap-x-2'>
-          <li className='w-20 text-sm text-center bg-primary cursor-pointer rounded-xl py-2 text-white'>
+          <li
+            className='w-20 text-sm text-center bg-primary cursor-pointer rounded-xl py-2 text-white'
+            onClick={() => setFilter('day')}
+          >
             Day
           </li>
-          <li className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'>
+          <li
+            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            onClick={() => setFilter('week')}
+          >
             Week
           </li>
-          <li className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'>
+          <li
+            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            onClick={() => setFilter('month')}
+          >
             Month
           </li>
-          <li className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'>
+          <li
+            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            onClick={() => setFilter('year')}
+          >
             Year
           </li>
         </ul>
@@ -61,7 +86,7 @@ const AllTransactions = () => {
           </div>
         </div>
         <ScrollContainer>
-          <div className='space-y-8'>{renderExpenseByDay()}</div>
+          <div className='space-y-8'>{renderExpenses()}</div>
         </ScrollContainer>
       </div>
     </MobileContainer>

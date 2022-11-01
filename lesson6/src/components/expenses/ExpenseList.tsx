@@ -8,8 +8,6 @@ interface Props {
 }
 
 const ExpenseList = (props: Props) => {
-  console.log('HEHEH')
-
   return (
     <div>
       {props.title && (

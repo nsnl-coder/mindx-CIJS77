@@ -8,7 +8,6 @@ const groupExpensesByDay = (expenses: Expense[]) => {
     if (result[index] === undefined) result[index] = []
     result[index].push(expense)
   })
-  console.log(result)
 
   return result
 }
