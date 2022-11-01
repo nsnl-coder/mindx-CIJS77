@@ -9,7 +9,8 @@ import LineChartStatistic from './LineChartStatistic'
 import getSortedExpenses from '../../helper/getSortedExpenses'
 import ExpenseList from '../../components/expenses/ExpenseList'
 import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
-import getTopExpenses from '../../helper/getTopSpending'
+import getSortedExpenseByType from '../../helper/getSortedExpenseByType'
+import getTotalExpenseInMonth from '../../helper/getTotalExpenseInMonth'
 
 interface Filter {
   type: 'deposite' | 'withdraw'
@@ -20,7 +21,6 @@ interface Filter {
 const Statistic = () => {
   const expenses = useSelector((store: any) => store.expense.data)
   const sortedExpenses = getSortedExpenses(expenses)
-  const mostRecentExpenses = sortedExpenses.slice(0, 40)
 
   const [filter, setFilter] = useState<Filter>({
     type: 'deposite',
@@ -28,11 +28,17 @@ const Statistic = () => {
     isAsc: true,
   })
 
-  const topExpenses = getTopExpenses({
+  const topExpenses = getSortedExpenseByType({
     expenses,
     year: filter.year,
     type: filter.type,
     isAsc: filter.isAsc,
+  })
+
+  const chartData = getTotalExpenseInMonth({
+    expenses: sortedExpenses,
+    year: filter.year,
+    type: filter.type,
   })
 
   const onFilterChange = (e: any) => {
@@ -77,7 +83,7 @@ const Statistic = () => {
             </Select>
           </FormControl>
         </div>
-        <LineChartStatistic />
+        <LineChartStatistic chartData={chartData} type={filter.type} />
         <div className='flex justify-between items-center text-base pt-8 px-9 font-semibold'>
           <h2>
             Top {filter.type === 'deposite' ? 'Income' : 'Spending'}{' '}

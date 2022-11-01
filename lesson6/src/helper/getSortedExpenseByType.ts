@@ -7,7 +7,7 @@ interface Params {
   isAsc: boolean
 }
 
-const getTopExpenses = (params: Params): Expense[] => {
+const getSortedExpenseByType = (params: Params): Expense[] => {
   const { expenses, year, type, isAsc } = params
 
   const spendingInYears = expenses.filter(
@@ -21,4 +21,4 @@ const getTopExpenses = (params: Params): Expense[] => {
   return sortedTopSpending
 }
 
-export default getTopExpenses
+export default getSortedExpenseByType
