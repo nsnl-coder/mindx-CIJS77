@@ -1,4 +1,4 @@
-import Expense from '../types/expense'
+import Expense from '../types/Expense'
 
 const groupExpensesByYear = (sortedExpense: Expense[]) => {
   const result: any = []

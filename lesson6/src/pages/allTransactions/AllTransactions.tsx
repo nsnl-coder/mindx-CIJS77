@@ -9,6 +9,7 @@ import groupExpensesByDay from '../../helper/groupExpensesByDay'
 import groupExpensesByWeek from '../../helper/groupExpensesByWeek'
 import groupExpensesByMonth from '../../helper/groupExpensesByMonth'
 import groupExpensesByYear from '../../helper/groupExpensesByYear'
+import getAccountSummary from '../../helper/getAccountSummary'
 
 type Filter = 'day' | 'week' | 'month' | 'year'
 
@@ -18,6 +19,7 @@ const AllTransactions = () => {
 
   const expenses = useSelector((store: any) => store.expense)
   const sortedExpenses = getSortedExpenses(expenses)
+  const { totalIncome, totalExpense } = getAccountSummary()
 
   useEffect(() => {
     switch (filter) {
@@ -46,30 +48,33 @@ const AllTransactions = () => {
     return arr
   }
 
+  const tabClassName = (tab: Filter) => {
+    if (tab === filter)
+      return 'w-20 text-sm text-center bg-primary cursor-pointer rounded-xl py-2 text-white'
+    return 'hover:bg-gray-100 w-20 text-sm text-center cursor-pointer rounded-xl py-2 duration-150'
+  }
+
   return (
     <MobileContainer isHeaderContainerBg={false} heading='All transactions'>
       <div className='px-6 flex flex-col h-full'>
         <ul className='flex w-full justify-between pt-4 flex-wrap gap-y-3 gap-x-2'>
-          <li
-            className='w-20 text-sm text-center bg-primary cursor-pointer rounded-xl py-2 text-white'
-            onClick={() => setFilter('day')}
-          >
+          <li className={tabClassName('day')} onClick={() => setFilter('day')}>
             Day
           </li>
           <li
-            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            className={tabClassName('week')}
             onClick={() => setFilter('week')}
           >
             Week
           </li>
           <li
-            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            className={tabClassName('month')}
             onClick={() => setFilter('month')}
           >
             Month
           </li>
           <li
-            className='hover:bg-gray-50 w-20 text-sm text-center cursor-pointer rounded-xl py-2'
+            className={tabClassName('year')}
             onClick={() => setFilter('year')}
           >
             Year
@@ -78,11 +83,15 @@ const AllTransactions = () => {
         <div className='flex justify-between py-4'>
           <div className='bg-gray-100 pl-4 pr-8 py-4 rounded-xl'>
             <h2 className='text-sm'>Income</h2>
-            <p className='text-md font-bold text-primary'>$1,840.00</p>
+            <p className='text-md font-bold text-primary'>
+              ${totalIncome.toFixed(2)}
+            </p>
           </div>
           <div className='bg-gray-100 pl-8 pr-4 py-4 rounded-xl'>
             <h2>Expense</h2>
-            <p className='text-md font-bold text-myred'>$284.00</p>
+            <p className='text-md font-bold text-myred'>
+              ${totalExpense.toFixed(2)}
+            </p>
           </div>
         </div>
         <ScrollContainer>

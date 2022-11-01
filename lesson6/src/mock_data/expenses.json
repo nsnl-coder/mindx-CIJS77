@@ -10,7 +10,7 @@
     "name": "Muffin Chocolate Individual Wrap",
     "type": "deposite",
     "date": "2022-09-20T22:00:03Z",
-    "amount": 74,
+    "amount": 2997,
     "id": "deeb9b42-97a9-4622-a143-08b173148cd7"
   },
   {
@@ -24,14 +24,14 @@
     "name": "Wine - Pinot Noir Pond Haddock",
     "type": "withdraw",
     "date": "2022-09-27T04:35:22Z",
-    "amount": 718,
+    "amount": 1576,
     "id": "32551221-171f-4bec-aca3-15ca765c423f"
   },
   {
     "name": "Mangoes",
     "type": "deposite",
     "date": "2022-04-23T02:15:23Z",
-    "amount": 753,
+    "amount": 1997,
     "id": "dbe74525-7fb1-4ae2-955a-4357bc8287b2"
   },
   {
@@ -45,7 +45,7 @@
     "name": "Juice - Orange, Concentrate",
     "type": "withdraw",
     "date": "2022-05-18T00:54:25Z",
-    "amount": 574,
+    "amount": 2004,
     "id": "0cd1f151-4043-45c6-a737-687a7322d3bd"
   },
   {
@@ -87,7 +87,7 @@
     "name": "Wine - Guy Sage Touraine",
     "type": "deposite",
     "date": "2022-06-30T11:26:46Z",
-    "amount": 902,
+    "amount": 5669,
     "id": "8d434030-0be7-494e-91e2-e4d3464d75d3"
   },
   {
@@ -108,14 +108,14 @@
     "name": "Whmis - Spray Bottle Trigger",
     "type": "deposite",
     "date": "2022-08-16T18:01:42Z",
-    "amount": 299,
+    "amount": 9997.5456,
     "id": "6d32c506-6146-43ef-8c61-81f1c113bed1"
   },
   {
     "name": "Tea - Honey Green Tea",
     "type": "withdraw",
     "date": "2022-05-01T18:52:45Z",
-    "amount": 360,
+    "amount": 360.1568,
     "id": "434b1a09-c5c4-447a-9b46-325dc2d507e9"
   },
   {
@@ -129,7 +129,7 @@
     "name": "Oil - Margarine",
     "type": "deposite",
     "date": "2022-03-08T05:18:02Z",
-    "amount": 189,
+    "amount": 1199,
     "id": "5567f08e-5dc3-45fc-a528-76b37cc44ad5"
   },
   {

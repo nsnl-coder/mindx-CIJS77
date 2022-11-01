@@ -1,4 +1,4 @@
-import Expense from '../types/expense'
+import Expense from '../types/Expense'
 import startOfWeek from 'date-fns/startOfWeek'
 import endOfWeek from 'date-fns/endOfWeek'
 

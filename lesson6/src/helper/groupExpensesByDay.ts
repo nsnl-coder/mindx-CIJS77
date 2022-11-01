@@ -1,4 +1,4 @@
-import Expense from '../types/expense'
+import Expense from '../types/Expense'
 
 const groupExpensesByDay = (expenses: Expense[]) => {
   const result: any = []

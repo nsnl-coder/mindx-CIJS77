@@ -1,10 +1,11 @@
 import React from 'react'
-import Expense from '../../types/expense'
 import ExpenseItem from './ExpenseItem'
+import Expense from '../../types/Expense'
 
 interface Props {
   expenses: Expense[]
   title?: string
+  expenseBackground?: boolean
 }
 
 const ExpenseList = (props: Props) => {
@@ -15,7 +16,11 @@ const ExpenseList = (props: Props) => {
       )}
       <div className=''>
         {props.expenses.map((expense) => (
-          <ExpenseItem expense={expense} key={expense.id} />
+          <ExpenseItem
+            expense={expense}
+            key={expense.id}
+            className={props.expenseBackground ? 'bg-gray-50 my-4' : ''}
+          />
         ))}
       </div>
     </div>

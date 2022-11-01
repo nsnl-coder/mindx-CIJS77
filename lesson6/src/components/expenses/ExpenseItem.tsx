@@ -1,4 +1,6 @@
-import Expense from '../../types/expense'
+import Expense from '../../types/Expense'
+import intervalToDuration from 'date-fns/intervalToDuration'
+import getDurationFromNow from '../../helper/getDurationFromNow'
 
 interface Props {
   expense: Expense
@@ -23,6 +25,16 @@ const ExpenseItem = (props: Props) => {
       </div>
     )
 
+  const duration = intervalToDuration({
+    start: new Date(expense.date),
+    end: new Date(),
+  })
+
+  const isRecentSixMonths = duration.years === 0 && duration.months! < 6
+
+  let renderDate
+  if (isRecentSixMonths) renderDate = getDurationFromNow(duration)
+
   return (
     <div
       className={`flex items-center justify-between ${className} hover:bg-gray-50 cursor-pointer py-4 px-2 rounded-xl`}
@@ -30,11 +42,13 @@ const ExpenseItem = (props: Props) => {
       <div>
         <p className='text-sm font-medium '>{expense.name}</p>
         <p className='text-xs font-normal text-gray-500'>
-          {new Date(expense.date).toLocaleDateString('en-us', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })}
+          {!renderDate &&
+            new Date(expense.date).toLocaleDateString('en-us', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          {isRecentSixMonths && renderDate}
         </p>
       </div>
       <div>{amount}</div>

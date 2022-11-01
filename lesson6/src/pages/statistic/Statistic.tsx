@@ -1,6 +1,7 @@
 import { FormControl, MenuItem, InputLabel, Select } from '@mui/material'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import SwapVertIcon from '@mui/icons-material/SwapVert'
 
 import Tab from '../../components/Tab'
 import MobileContainer from '../../components/ui/mobileContainer/MobileContainer'
@@ -8,28 +9,66 @@ import LineChartStatistic from './LineChartStatistic'
 import getSortedExpenses from '../../helper/getSortedExpenses'
 import ExpenseList from '../../components/expenses/ExpenseList'
 import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
+import getTopExpenses from '../../helper/getTopSpending'
+
+interface Filter {
+  type: 'deposite' | 'withdraw'
+  year: number
+  isAsc: boolean
+}
 
 const Statistic = () => {
   const expenses = useSelector((store: any) => store.expense)
   const sortedExpenses = getSortedExpenses(expenses)
   const mostRecentExpenses = sortedExpenses.slice(0, 40)
 
-  const [year, setYear] = useState<number>(2022)
+  const [filter, setFilter] = useState<Filter>({
+    type: 'deposite',
+    year: new Date().getFullYear(),
+    isAsc: true,
+  })
+
+  const topExpenses = getTopExpenses({
+    expenses,
+    year: filter.year,
+    type: filter.type,
+    isAsc: filter.isAsc,
+  })
+
+  const onFilterChange = (e: any) => {
+    const { name, value } = e.target
+    setFilter((filter: Filter) => {
+      return {
+        ...filter,
+        [name]: value,
+      }
+    })
+  }
+
+  const changeSortOrderHandler = () => {
+    setFilter((filter: Filter) => {
+      return {
+        ...filter,
+        isAsc: !filter.isAsc,
+      }
+    })
+  }
 
   return (
     <MobileContainer isHeaderContainerBg={false} heading='Statistic'>
       <div className='flex flex-col h-full'>
         <div className='flex px-4 space-x-8 mt-3'>
           <div className='flex-grow'>
-            <Tab />
+            <Tab setFilter={setFilter} filter={filter} />
           </div>
           <FormControl sx={{ width: '100px' }}>
             <Select
               labelId='demo-simple-select-label'
               id='demo-simple-select'
-              value={year}
-              onChange={(e: any) => setYear(+e.target.value)}
+              value={filter.year}
+              onChange={onFilterChange}
               color='success'
+              name='year'
             >
               <MenuItem value={2022}>2022</MenuItem>
               <MenuItem value={2021}>2021</MenuItem>
@@ -39,8 +78,23 @@ const Statistic = () => {
           </FormControl>
         </div>
         <LineChartStatistic />
+        <div className='flex justify-between items-center text-base pt-8 px-9 font-semibold'>
+          <h2>
+            Top {filter.type === 'deposite' ? 'Income' : 'Spending'}{' '}
+            {filter.year}
+          </h2>
+          <span
+            onClick={changeSortOrderHandler}
+            className='inline-block px-2 py-2 cursor-pointer'
+          >
+            <SwapVertIcon />
+          </span>
+        </div>
         <ScrollContainer className='px-8'>
-          <ExpenseList expenses={mostRecentExpenses} />
+          <ExpenseList expenses={topExpenses} expenseBackground={true} />
+          {topExpenses.length === 0 && (
+            <h2>No transaction found in {filter.year}</h2>
+          )}
         </ScrollContainer>
       </div>
     </MobileContainer>
