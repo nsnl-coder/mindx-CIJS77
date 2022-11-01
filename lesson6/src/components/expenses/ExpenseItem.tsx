@@ -9,13 +9,13 @@ const ExpenseItem = (props: Props) => {
 
   const amount =
     expense.type === 'deposite' ? (
-      <div className='text-mygreen space-x-0.5'>
+      <div className='font-medium text-mygreen space-x-0.5'>
         <span>+</span>
         <span>$</span>
         <span>{expense.amount}</span>
       </div>
     ) : (
-      <div className='text-myred space-x-0.5'>
+      <div className='font-medium text-myred space-x-0.5'>
         <span>-</span>
         <span>$</span>
         <span>{expense.amount}</span>
@@ -25,7 +25,7 @@ const ExpenseItem = (props: Props) => {
   return (
     <div className='flex items-center justify-between'>
       <div>
-        <p className='text-sm'>{expense.name}</p>
+        <p className='text-sm font-semibold '>{expense.name}</p>
         <p className='text-xs font-normal text-gray-500'>
           {new Date(expense.date).toLocaleDateString('en-us', {
             year: 'numeric',

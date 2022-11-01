@@ -1,6 +1,6 @@
 import Expense from '../types/expense'
 
-const getSortedTransactions = (transactions: Expense[]) => {
+const getSortedExpenses = (transactions: Expense[]) => {
   const expensesArr = [...transactions]
   const sortedArray = expensesArr.sort(
     (objA: Expense, objB: Expense) =>
@@ -9,4 +9,4 @@ const getSortedTransactions = (transactions: Expense[]) => {
   return sortedArray
 }
 
-export default getSortedTransactions
+export default getSortedExpenses

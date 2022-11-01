@@ -1,12 +1,9 @@
+import React from 'react'
 import { useEffect, useRef } from 'react'
 import './ScrollContainer.css'
 
 const ScrollContainer = (props: any) => {
   const scrollbar = useRef(null)
-
-  useEffect(() => {
-    console.log(scrollbar.current)
-  }, [])
 
   return (
     <div

@@ -1,7 +1,8 @@
+import React from 'react'
 import SouthIcon from '@mui/icons-material/South'
-import NorthIcon from '@mui/icons-material/South'
+import NorthIcon from '@mui/icons-material/North'
 
-const TransactionSummary = () => {
+const AccountSummary = () => {
   return (
     <div className='w-full px-4 absolute top-0 mt-8'>
       <div className='w-full bg-primary-dark p-3 rounded-xl text-white brightness-105 py-6'>
@@ -34,4 +35,4 @@ const TransactionSummary = () => {
   )
 }
 
-export default TransactionSummary
+export default AccountSummary
