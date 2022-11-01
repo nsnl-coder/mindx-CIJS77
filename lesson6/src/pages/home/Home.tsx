@@ -10,7 +10,7 @@ import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer
 import MobileContainer from '../../components/ui/mobileContainer/MobileContainer'
 
 const Home = () => {
-  const expenses = useSelector((store: any) => store.expense)
+  const expenses = useSelector((store: any) => store.expense.data)
   const sortedExpenses = getSortedTransactions(expenses)
 
   const mostRecentExpenses = sortedExpenses.slice(0, 10)

@@ -1,8 +1,9 @@
 import React from 'react'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
 import RoundedReact from './../../../assets/images/roundedRect.png'
+import { Link } from 'react-router-dom'
 
-const Header = (props) => {
+const Header = (props: any) => {
   const { heading, isHeaderContainerBg = true } = props
 
   return (
@@ -17,7 +18,12 @@ const Header = (props) => {
       <div className={!isHeaderContainerBg ? 'text-base' : 'text-gray-100'}>
         <div className='flex w-full items-center py-4 text-sm'>
           <span className='absolute hover:text-gray-400 cursor-pointer p-4'>
-            {heading && <KeyboardArrowLeftIcon />}
+            {heading && (
+              <Link to='/'>
+                {' '}
+                <KeyboardArrowLeftIcon />
+              </Link>
+            )}
           </span>
           <h1 className='flex-grow text-center capitalize font-medium text-lg'>
             {heading}

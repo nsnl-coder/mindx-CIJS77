@@ -3,7 +3,7 @@ import AccountSummary from '../types/accountSummary'
 import Expense from '../types/Expense'
 
 const getAccountSummary = (): AccountSummary => {
-  const expenses = useSelector((store: any) => store.expense)
+  const expenses = useSelector((store: any) => store.expense.data)
   let totalExpense = 0
   let totalIncome = 0
 

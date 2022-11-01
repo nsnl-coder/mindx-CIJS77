@@ -1,10 +1,12 @@
 import { useState } from 'react'
 
-const useForm = (initialFormValue) => {
+const useForm = (initialFormValue, validateForm) => {
   const [values, setValues] = useState(initialFormValue)
+  const [errors, setErrors] = useState<any>({})
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target
+    validateForm()
     setValues((prevValue: any) => {
       return {
         ...prevValue,
@@ -17,6 +19,8 @@ const useForm = (initialFormValue) => {
     values,
     setValues,
     handleInputChange,
+    errors,
+    setErrors,
   }
 }
 

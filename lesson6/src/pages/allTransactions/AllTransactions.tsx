@@ -17,7 +17,7 @@ const AllTransactions = () => {
   const [filter, setFilter] = useState<Filter>('day')
   const [renderList, setRenderList] = useState<any>({})
 
-  const expenses = useSelector((store: any) => store.expense)
+  const expenses = useSelector((store: any) => store.expense.data)
   const sortedExpenses = getSortedExpenses(expenses)
   const { totalIncome, totalExpense } = getAccountSummary()
 

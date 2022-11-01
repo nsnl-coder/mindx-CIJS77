@@ -18,7 +18,7 @@ interface Filter {
 }
 
 const Statistic = () => {
-  const expenses = useSelector((store: any) => store.expense)
+  const expenses = useSelector((store: any) => store.expense.data)
   const sortedExpenses = getSortedExpenses(expenses)
   const mostRecentExpenses = sortedExpenses.slice(0, 40)
 
