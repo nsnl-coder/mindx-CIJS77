@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import TransactionForm from './TransactionForm'
+import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
 
 const AddTransactions = () => {
   const [formState, setFormState] = useState({
@@ -23,8 +24,8 @@ const AddTransactions = () => {
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <MobileContainer heading='Add Transaction'>
-          <div className='px-10 py-6'>
-            <div className='px-4 border shadow-lg py-6 rounded-xl bg-white -mt-24'>
+          <div className='px-10 py-6 h-[125%]'>
+            <div className='px-4 border shadow-lg py-6 rounded-xl bg-white -mt-24 h-full flex flex-col'>
               <div className='flex bg-gray-100 rounded-full py-1 px-5 mb-4'>
                 <div className='flex-grow text-center py-2.5 font-medium rounded-full hover:bg-mygreen/10 cursor-pointer hover:text-mygreen'>
                   Income
@@ -33,7 +34,9 @@ const AddTransactions = () => {
                   Transaction
                 </div>
               </div>
-              <TransactionForm />
+              <ScrollContainer>
+                <TransactionForm />
+              </ScrollContainer>
             </div>
           </div>
         </MobileContainer>

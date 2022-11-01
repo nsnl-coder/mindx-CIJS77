@@ -2,7 +2,7 @@ import Expense from '../../types/expense'
 
 interface Props {
   expense: Expense
-  className: string
+  className?: string
 }
 
 const ExpenseItem = (props: Props) => {
@@ -24,9 +24,11 @@ const ExpenseItem = (props: Props) => {
     )
 
   return (
-    <div className={`flex items-center justify-between ${className}`}>
+    <div
+      className={`flex items-center justify-between ${className} hover:bg-gray-50 cursor-pointer py-4 px-2 rounded-xl`}
+    >
       <div>
-        <p className='text-sm font-semibold '>{expense.name}</p>
+        <p className='text-sm font-medium '>{expense.name}</p>
         <p className='text-xs font-normal text-gray-500'>
           {new Date(expense.date).toLocaleDateString('en-us', {
             year: 'numeric',

@@ -39,7 +39,7 @@ const Statistic = () => {
           </FormControl>
         </div>
         <LineChartStatistic />
-        <ScrollContainer>
+        <ScrollContainer className='px-8'>
           <ExpenseList expenses={mostRecentExpenses} />
         </ScrollContainer>
       </div>

@@ -56,10 +56,10 @@ const data = [
 
 const LineChartStatistic = () => {
   return (
-    <div className='w-full overflow-auto'>
+    <div className='w-full overflow-auto flex justify-center'>
       <AreaChart
         width={730}
-        height={250}
+        height={200}
         data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >

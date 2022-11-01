@@ -2,10 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import ExpenseList from '../../components/expenses/ExpenseList'
+import { Link } from 'react-router-dom'
 
 import getSortedTransactions from '../../helper/getSortedExpenses'
 import AccountSummary from './AccountSummary'
 import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
+import MobileContainer from '../../components/ui/mobileContainer/MobileContainer'
 
 const Home = () => {
   const expenses = useSelector((store: any) => store.expense)
@@ -14,18 +16,22 @@ const Home = () => {
   const mostRecentExpenses = sortedExpenses.slice(0, 10)
 
   return (
-    <div className='flex flex-col h-full pb-10'>
-      <AccountSummary />
-      <div className='mt-16  font-semibold text-base flex flex-col h-full'>
-        <div className='flex justify-between items-center pt-4 pb-6 px-4'>
-          <h2>Transaction History</h2>
-          <p className='text-xs text-gray-500 cursor-pointer'>See all</p>
+    <MobileContainer>
+      <div className='flex flex-col h-full pb-10'>
+        <AccountSummary />
+        <div className='mt-16  font-semibold text-base flex flex-col h-full'>
+          <div className='flex justify-between items-center pt-4 pb-6 px-4'>
+            <h2>Transaction History</h2>
+            <Link to='all-transaction'>
+              <p className='text-xs text-gray-500 cursor-pointer'>See all</p>
+            </Link>
+          </div>
+          <ScrollContainer className='px-8'>
+            <ExpenseList expenses={mostRecentExpenses} />
+          </ScrollContainer>
         </div>
-        <ScrollContainer>
-          <ExpenseList expenses={mostRecentExpenses} />
-        </ScrollContainer>
       </div>
-    </div>
+    </MobileContainer>
   )
 }
 
