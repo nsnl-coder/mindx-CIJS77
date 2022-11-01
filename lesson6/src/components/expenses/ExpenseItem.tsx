@@ -2,10 +2,11 @@ import Expense from '../../types/expense'
 
 interface Props {
   expense: Expense
+  className: string
 }
 
 const ExpenseItem = (props: Props) => {
-  const { expense } = props
+  const { expense, className } = props
 
   const amount =
     expense.type === 'deposite' ? (
@@ -23,7 +24,7 @@ const ExpenseItem = (props: Props) => {
     )
 
   return (
-    <div className='flex items-center justify-between'>
+    <div className={`flex items-center justify-between ${className}`}>
       <div>
         <p className='text-sm font-semibold '>{expense.name}</p>
         <p className='text-xs font-normal text-gray-500'>

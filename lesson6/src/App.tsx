@@ -6,6 +6,7 @@ import MobileContainer from './components/ui/mobileContainer/MobileContainer'
 import NewTransaction from './pages/addTransactions/NewTransaction'
 import AllTransactions from './pages/allTransactions/AllTransactions'
 import Home from './pages/home/Home'
+import Statistic from './pages/statistic/Statistic'
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
         {/* <MobileContainer isHeaderContainerBg={false} heading='All transactions'>
         <AllTransactions />
       </MobileContainer> */}
-        <NewTransaction />
+        {/* <NewTransaction /> */}
+        <Statistic />
       </LocalizationProvider>
     </>
   )

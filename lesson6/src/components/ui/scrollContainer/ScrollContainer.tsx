@@ -8,7 +8,7 @@ const ScrollContainer = (props: any) => {
   return (
     <div
       id='scroll-container'
-      className='overflow-y-auto h-0 flex-grow px-4 mr-1'
+      className='overflow-y-auto h-0 flex-grow px-4 mr-1 py-4'
       ref={scrollbar}
     >
       {props.children}

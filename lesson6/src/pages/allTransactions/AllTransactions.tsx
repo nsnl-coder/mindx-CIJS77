@@ -1,12 +1,12 @@
 import React from 'react'
 import ExpenseList from '../../components/expenses/ExpenseList'
-import getSortedTransactions from '../../helper/getSortedExpenses'
+import getSortedExpenses from '../../helper/getSortedExpenses'
 import { useSelector } from 'react-redux'
 import ScrollContainer from '../../components/ui/scrollContainer/ScrollContainer'
 
 const AllTransactions = () => {
   const expenses = useSelector((store: any) => store.expense)
-  const sortedExpenses = getSortedTransactions(expenses)
+  const sortedExpenses = getSortedExpenses(expenses)
   const mostRecentExpenses = sortedExpenses.slice(0, 40)
 
   return (
