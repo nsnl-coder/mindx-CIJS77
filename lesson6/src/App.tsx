@@ -11,14 +11,16 @@ import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/statistic' element={<Statistic />} />
-        <Route path='/add-new' element={<NewTransaction />} />
-        <Route path='/all-transaction' element={<AllTransactions />} />
-      </Routes>
-    </LocalizationProvider>
+    <div className='absolute'>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/statistic' element={<Statistic />} />
+          <Route path='/add-new' element={<NewTransaction />} />
+          <Route path='/all-transaction' element={<AllTransactions />} />
+        </Routes>
+      </LocalizationProvider>
+    </div>
   )
 }
 
