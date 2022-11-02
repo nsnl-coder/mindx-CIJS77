@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import AccountSummary from '../types/accountSummary'
+import AccountSummary from '../types/AccountSummary'
 import Expense from '../types/Expense'
 
 const getAccountSummary = (): AccountSummary => {

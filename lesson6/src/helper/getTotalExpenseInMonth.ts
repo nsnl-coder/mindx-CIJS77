@@ -8,7 +8,7 @@ const getTotalExpenseInMonth = ({ expenses, year, type }: any) => {
 
   const expenseObj: any = {}
 
-  filterArray.forEach((expense) => {
+  filterArray.forEach((expense: any) => {
     const month = new Date(expense.date).toLocaleString('en-Us', {
       month: 'long',
     })
