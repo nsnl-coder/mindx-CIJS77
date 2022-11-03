@@ -3,7 +3,10 @@ import Expense from '../types/Expense'
 
 const getTotalExpenseInMonth = ({ expenses, year, type }: any) => {
   const filterArray = expenses
-    .filter((expense: Expense) => new Date(expense.date).getFullYear() === year)
+    .filter(
+      (expense: Expense) =>
+        new Date(expense.date).getFullYear() === year && expense.type === type
+    )
     .reverse()
 
   const expenseObj: any = {}

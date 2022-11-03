@@ -34,6 +34,8 @@ const Login = (props: any) => {
   const onSubmitHandler = (data: any) => {
     const { amount, date, note } = data
 
+    console.log(date)
+
     const payload: Expense = {
       amount: +amount,
       date,
@@ -50,6 +52,10 @@ const Login = (props: any) => {
       dispatch(resetIsAddExpenseSuccess())
     }, 6000)
   }, [isAddExpenseSuccess])
+
+  const defaultDate = format(new Date(), 'yyyy-MM-dd HH:mm')
+    .split(' ')
+    .join('T')
 
   return (
     <>
@@ -70,9 +76,9 @@ const Login = (props: any) => {
           errors={errors}
           placeholder='date'
           name='date'
-          type='date'
+          type='datetime-local'
           label='date'
-          defaultValue={format(new Date(), 'yyyy-MM-dd')}
+          defaultValue={defaultDate}
         />
 
         <TextArea
@@ -88,8 +94,8 @@ const Login = (props: any) => {
           Add new transaction
         </button>
         {isAddExpenseSuccess && (
-          <div className='fixed h-12 bg-mygreen/10 space-x-4 text-mygreen px-12 rounded-xl bottom-28 left-1/2 -translate-x-1/2 z-50 flex items-center'>
-            <span> Expense Added Success Fully</span>
+          <div className='fixed py-4 bg-black/80 space-x-4 text-white px-12 rounded-xl bottom-28 left-1/2 -translate-x-1/2 z-50 flex items-center'>
+            <div> Expense Added Success Fully</div>
             <CheckIcon />
           </div>
         )}

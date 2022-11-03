@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useMemo } from 'react'
 import ExpenseList from '../../components/expenses/ExpenseList'
@@ -11,8 +11,8 @@ import MobileContainer from '../../components/ui/mobileContainer/MobileContainer
 
 const Home = () => {
   const expenses = useSelector((store: any) => store.expense.data)
-  const sortedExpenses = getSortedTransactions(expenses)
 
+  const sortedExpenses = getSortedTransactions(expenses)
   const mostRecentExpenses = sortedExpenses.slice(0, 10)
 
   return (

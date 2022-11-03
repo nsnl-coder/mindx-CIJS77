@@ -1,6 +1,7 @@
 import Expense from '../../types/Expense'
 import intervalToDuration from 'date-fns/intervalToDuration'
 import getDurationFromNow from '../../helper/getDurationFromNow'
+import { isAfter } from 'date-fns/esm'
 
 interface Props {
   expense: Expense
@@ -30,10 +31,17 @@ const ExpenseItem = (props: Props) => {
     end: new Date(),
   })
 
-  const isRecentSixMonths = duration.years === 0 && duration.months! < 6
+  const isExpenseFromFuture = isAfter(new Date(expense.date), new Date())
+  const isRecentSixMonths =
+    duration.years === 0 && duration.months! < 6 && !isExpenseFromFuture
 
-  let renderDate
+  let renderDate: any = new Date(expense.date).toLocaleDateString('en-us', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
   if (isRecentSixMonths) renderDate = getDurationFromNow(duration)
+  if (isExpenseFromFuture) renderDate = 'Future expense'
 
   return (
     <div
@@ -41,15 +49,7 @@ const ExpenseItem = (props: Props) => {
     >
       <div>
         <p className='text-sm font-medium '>{expense.name}</p>
-        <p className='text-xs font-normal text-gray-500'>
-          {!renderDate &&
-            new Date(expense.date).toLocaleDateString('en-us', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          {isRecentSixMonths && renderDate}
-        </p>
+        <p className='text-xs font-normal text-gray-500'>{renderDate}</p>
       </div>
       <div>{amount}</div>
     </div>
