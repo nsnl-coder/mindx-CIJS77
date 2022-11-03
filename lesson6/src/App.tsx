@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
@@ -8,8 +8,11 @@ import AllTransactions from './pages/allTransactions/AllTransactions'
 import Home from './pages/home/Home'
 import Statistic from './pages/statistic/Statistic'
 import { Routes, Route } from 'react-router-dom'
+import useConfigMobileHeight from './hooks/useConfigMobileHeight'
 
 const App = () => {
+  useConfigMobileHeight()
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <div className='absolute inset-0'>
